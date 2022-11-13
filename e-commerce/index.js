@@ -1,21 +1,21 @@
 const { ApolloServer, gql } = require('apollo-server');
-const { products, categories, reviews } = require('./fakeData');
+const { db } = require('./fakeData');
 const { typeDefs } = require('./schema');
 const { Query } = require('./resolvers/Query');
 const { Category } = require('./resolvers/Category');
 const { Product } = require('./resolvers/Product');
+const { Mutation } = require('./resolvers/Mutation');
 
 const server = new ApolloServer({ 
     typeDefs, 
     resolvers: { 
         Query,
         Product,
-        Category
+        Category,
+        Mutation
     },
     context: {
-        products,
-        categories,
-        reviews
+        db
     } 
 });
 

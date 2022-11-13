@@ -1,8 +1,8 @@
 exports.Product = {
-    category: ({ categoryId }, args, { categories }) => categories.find(c => c.id === categoryId),
-    reviews: (parent, args, { reviews }) => {
+    category: ({ categoryId }, args, { db }) => db.categories.find(c => c.id === categoryId),
+    reviews: (parent, args, { db }) => {
         const { id: productId } = parent;
         console.log(parent);
-        return reviews.filter(review => review.productId === productId)
+        return db.reviews.filter(review => review.productId === productId)
     }
 }
